@@ -9,9 +9,14 @@ class MemoryApiChannel extends ApplicationChannel {
     logger.onRecord.listen(
         (rec) => print("$rec ${rec.error ?? ""} ${rec.stackTrace ?? ""}"));
 
+    final config = CardConfig(options.configurationFilePath);
     final dataModel = ManagedDataModel.fromCurrentMirrorSystem();
     final persistentStore = PostgreSQLPersistentStore.fromConnectionInfo(
-        "marcelrick", "password", "localhost", 5432, 'cards');
+        config.database.username,
+        config.database.password,
+        config.database.host,
+        config.database.port,
+        config.database.databaseName);
 
     context = ManagedContext(dataModel, persistentStore);
   }
@@ -24,4 +29,10 @@ class MemoryApiChannel extends ApplicationChannel {
 
     return router;
   }
+}
+
+class CardConfig extends Configuration {
+  CardConfig(String path) : super.fromFile(File(path));
+
+  DatabaseConfiguration database;
 }
