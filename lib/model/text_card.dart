@@ -12,9 +12,9 @@ class _TextCard {
   @Column()
   String back;
 
-  @Column()
+  @Column(databaseType: ManagedPropertyType.integer)
   int level = 0;
 
-  @Column()
+  @Column(databaseType: ManagedPropertyType.datetime)
   DateTime nextOccurence;
 }

@@ -11,7 +11,7 @@ class MemoryApiChannel extends ApplicationChannel {
 
     final dataModel = ManagedDataModel.fromCurrentMirrorSystem();
     final persistentStore = PostgreSQLPersistentStore.fromConnectionInfo(
-        "marcelrick", "password", "localhost", 8888, 'cards');
+        "marcelrick", "password", "localhost", 5432, 'cards');
 
     context = ManagedContext(dataModel, persistentStore);
   }
@@ -20,7 +20,7 @@ class MemoryApiChannel extends ApplicationChannel {
   Controller get entryPoint {
     final router = Router();
 
-    router.route('/pull').link(() => CardController(context));
+    router.route('/').link(() => CardController(context));
 
     return router;
   }
