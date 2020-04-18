@@ -1,13 +1,13 @@
 name: memory_api
-description: An empty Aqueduct application.
+description: A backend for a flutter flashcard app.
 version: 0.0.1
-author: stable|kernel <jobs@stablekernel.com>
+author: Marc Elrick
 
 environment:
-  sdk: ">=2.0.0 <3.0.0"
+  sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
-  aqueduct: ^3.0.0
+  aqueduct: ^3.2.1
 
 dev_dependencies:
   test: ^1.0.0
